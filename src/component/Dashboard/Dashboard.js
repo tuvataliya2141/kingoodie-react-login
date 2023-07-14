@@ -370,7 +370,7 @@ function Dashboard() {
     }, [])
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <ToastContainer />
             {isLoading ? <Loding /> : Dashboard}
 
@@ -772,7 +772,7 @@ function Dashboard() {
             </main>
 
 
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

@@ -6,12 +6,15 @@ import { AppProvider } from './context/index'
 import { ShippingProvider } from './context/shippingContext'
 import reportWebVitals from './reportWebVitals';
 import './assets/css/main.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
     <ShippingProvider>
-      <App />
+    <BrowserRouter>
+    <App />
+  </BrowserRouter>
     </ShippingProvider>
   </AppProvider>
 );

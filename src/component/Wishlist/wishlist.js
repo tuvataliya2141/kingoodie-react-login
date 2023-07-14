@@ -78,7 +78,7 @@ function Wishlist() {
         <div>
             {isLoading ? <Loding /> : Wishlist}
             <ToastContainer />
-            <Header />
+            {/* <Header /> */}
             <main className="main">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -188,7 +188,7 @@ function Wishlist() {
                     </div>
                 </div>
             </main>
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

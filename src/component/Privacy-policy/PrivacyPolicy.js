@@ -5,7 +5,7 @@ import Header from '../Header'
 function PrivacyPolicy() {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         <main className="main pages">
             <div className="page-header breadcrumb-wrap">
                 <div className="container">
@@ -151,7 +151,7 @@ function PrivacyPolicy() {
                 </div>
             </div>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }

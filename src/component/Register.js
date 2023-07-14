@@ -69,7 +69,7 @@ function Register() {
     return (
         <div>
 
-            <Header />
+            {/* <Header /> */}
             <ToastContainer />
 
             <main className="main pages">
@@ -160,7 +160,7 @@ function Register() {
                 </div>
             </main>
 
-            <Footer />
+            {/* <Footer/> */}
 
         </div>
     )

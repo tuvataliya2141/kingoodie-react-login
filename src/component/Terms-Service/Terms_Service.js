@@ -5,7 +5,7 @@ import Header from '../Header';
 function Terms_Service() {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         <main className="main pages">
             <div className="page-header breadcrumb-wrap">
                 <div className="container">
@@ -89,7 +89,7 @@ function Terms_Service() {
                 </div>
             </div>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }

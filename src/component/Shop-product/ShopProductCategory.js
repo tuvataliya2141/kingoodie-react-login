@@ -164,7 +164,7 @@ function ShopProduct() {
     return (
         <div>
             <ToastContainer />
-            <Header />
+            {/* <Header /> */}
             {isLoading ? <Loding /> : ShopProduct}
             <main className="main">
                 <div className="page-header breadcrumb-wrap">
@@ -567,7 +567,7 @@ function ShopProduct() {
             </main>
 
 
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

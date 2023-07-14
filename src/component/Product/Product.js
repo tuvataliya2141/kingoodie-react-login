@@ -240,7 +240,7 @@ console.log('meta', window.location.href);
     <div>
       {isLoading ? <Loding /> : Product}
       <ToastContainer />
-      <Header />
+      {/* <Header /> */}
       { List.name ? 
         <Helmet>
           <title> {List.name}| kingoodie</title>
@@ -852,7 +852,7 @@ console.log('meta', window.location.href);
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer/> */}
     </div>
   )
 }
