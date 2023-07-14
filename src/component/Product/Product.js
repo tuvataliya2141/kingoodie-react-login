@@ -218,7 +218,7 @@ function Product(props) {
       behavior: "smooth",
     });
     GetSingelProducts();
-  }, []);
+  }, [id]);
   useEffect(() => {
     let lightbox = new PhotoSwipeLightbox({
       gallery: '#Gallary',
