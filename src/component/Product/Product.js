@@ -233,9 +233,6 @@ function Product(props) {
     };
   }, []);
 
- 
-console.log('meta', window.location.href);
-
   return (
     <div>
       {isLoading ? <Loding /> : Product}
