@@ -49,18 +49,7 @@ function BestSellers() {
             <h3 className>Best Sellers</h3>
           </div>
           <div className="row">
-            <div className="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
-              <div className="banner-img style-2">
-                <div className="banner-text">
-                  <h2 className="mb-45" style={{ color: "white" }}>Bring nature into your home</h2>
-                  <a style={{ fontSize: "20px", width: "130px", backgroundColor: "#837c7c" }} className="btn btn-xs" >Shop Now
-                    {/* <i className="fi-rs-arrow-small-right" /> */}
-                  </a>
-                </div>
-
-              </div>
-            </div>
-            <div className="col-md-9">
+            <div className="col-md-12">
               <div className="row product-grid">
                 {
                   List.map((item, i) => {
@@ -68,87 +57,88 @@ function BestSellers() {
                     const Name = item.name.substring(0, 20);
 
                     return (
-
                       <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
-                        <div className="product-cart-wrap mb-30">
-                          <div className="product-img-action-wrap">
-                            <div className="product-img product-img-zoom">
-                              <Link to={`/${item.slug}`}>
-                                <img className="default-img" src={image} alt="/" />
-                                <img className="hover-img" src={image} alt="/" />
-                              </Link>
-                            </div>
-                            <div className="product-action-1">
-                              {
-                                user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
-                              }
+                        <Link to={`/${item.slug}`}>
+                          <div className="product-cart-wrap mb-30">
+                            <div className="product-img-action-wrap">
+                              <div className="product-img product-img-zoom">
+                                <Link to={`/${item.slug}`}>
+                                  <img className="default-img" src={image} alt="/" />
+                                  <img className="hover-img" src={image} alt="/" />
+                                </Link>
+                              </div>
+                              <div className="product-action-1">
+                                {
+                                  user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                }
 
-                              {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
-                              {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
+                                {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
+                                {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
+                              </div>
+                              <div className="product-badges product-badges-position product-badges-mrg flex-column">
+                                {
+                                  item.on_sale == 0 ? null :
+                                  <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
+                                }
+                                {
+                                  item.best_selling == 0 ? null :
+                                  <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
+                                }
+                                {
+                                  item.selling_fast == 0 ? null :
+                                  <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
+                                }
+                                {
+                                  item.limited_stock == 0 ? null :
+                                  <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
+                                }
+                                {
+                                  item.designer_piece == 0 ? null :
+                                  <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
+                                }
+                              </div>
+                              {
+                                item.discount == 0 ? null :
+                                  <div className="product-badges product-badges-position-mrg product-badges discount-set" style={{right: '0'}}>
+                                    <span className="hot">{item.discount}% OFF</span>
+                                  </div>
+                              }
                             </div>
-                            <div className="product-badges product-badges-position product-badges-mrg flex-column">
-                              {
-                                item.on_sale == 0 ? null :
-                                <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
-                              }
-                              {
-                                item.best_selling == 0 ? null :
-                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
-                              }
-                              {
-                                item.selling_fast == 0 ? null :
-                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
-                              }
-                              {
-                                item.limited_stock == 0 ? null :
-                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
-                              }
-                              {
-                                item.designer_piece == 0 ? null :
-                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
-                              }
-                            </div>
-                            {
-                              item.discount == 0 ? null :
-                                <div className="product-badges product-badges-position-mrg product-badges discount-set" style={{right: '0'}}>
-                                  <span className="hot">{item.discount}% OFF</span>
+                            <div className="product-content-wrap">
+                              <div className="product-category">
+                                <a>{item.slug}</a>
+                              </div>
+                              <h2><a> {Name?.length > 13
+                                ? `${Name}...`
+                                : Name}</a></h2>
+                              <div className="product-rate-cover">
+                                <div className="product-rate d-inline-block">
+                                  <div className="product-rating" style={{ width: item.rating + 35 }} />
                                 </div>
-                            }
-                          </div>
-                          <div className="product-content-wrap">
-                            <div className="product-category">
-                              <a>{item.slug}</a>
-                            </div>
-                            <h2><a> {Name?.length > 13
-                              ? `${Name}...`
-                              : Name}</a></h2>
-                            <div className="product-rate-cover">
-                              <div className="product-rate d-inline-block">
-                                <div className="product-rating" style={{ width: item.rating + 35 }} />
+                                <span className="font-small ml-5 text-muted"> ({item.rating})</span>
                               </div>
-                              <span className="font-small ml-5 text-muted"> ({item.rating})</span>
-                            </div>
-                            <div className="product-price mt-10">
-                              <span>{item.main_price}</span>
-                              {
-                                item.main_price == item.stroked_price ? null :
-                                <span className="old-price">{item.stroked_price}</span>
-                              }
-                            </div>
-                            {/* <div className="sold mt-18 mb-25">
-                              <div className="progress mb-5">
-                                <div className="progress-bar" role="progressbar" style={{ width: '60%' }} aria-valuemin={0} aria-valuemax={100} />
+                              <div className="product-price mt-10">
+                                <span>{item.main_price}</span>
+                                {
+                                  item.main_price == item.stroked_price ? null :
+                                  <span className="old-price">{item.stroked_price}</span>
+                                }
                               </div>
-                              <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
-                            </div> */}
-                            <div className="product-card-bottom">
+                              {/* <div className="sold mt-18 mb-25">
+                                <div className="progress mb-5">
+                                  <div className="progress-bar" role="progressbar" style={{ width: '60%' }} aria-valuemin={0} aria-valuemax={100} />
+                                </div>
+                                <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
+                              </div> */}
+                              <div className="product-card-bottom">
 
 
-                              <Link to={`/${item.slug}`} style={{ width: "100%" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
+                                <Link to={`/${item.slug}`} style={{ width: "100%" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
 
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       </div>
                     )
                   })

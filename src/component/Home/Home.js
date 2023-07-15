@@ -80,7 +80,7 @@ console.log(HomeCard[0]?.title);
       slidesToShow: 7,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 5000,
       pauseOnHover: true,
       arrows:false,
       responsive: [
@@ -182,39 +182,6 @@ console.log(HomeCard[0]?.title);
           </div>
         </section>
 
-        <section className="popular-categories section-padding">
-          <div className="container wow animate__animated animate__fadeIn">
-            <div className="row">
-              <div className="col-md-11">
-                <div className="title">
-                  <h3>Featured Brands</h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" />
-            <div className="carausel-10-columns-cover position-relative" style={{ marginTop:"30px" }}>
-              <Slider {...settings}>
-                {
-                  BrandsList.map((item, i) => {
-                    return (
-                      <>
-                        <div className="carausel-10-columns" id="carausel-10-columns">
-                          <div className="card-2">
-                            <div className="cat-list-home">
-                              <img src={item.logo} />
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    )
-                  })
-                }
-              </Slider>
-            </div>
-          </div>
-        </section>
-
         {/* new */}
         <section class="banners mb-25">
           <div class="container">
@@ -284,7 +251,7 @@ console.log(HomeCard[0]?.title);
         <section className="product-tabs section-padding position-relative">
           <div className="container">
             <div className="section-title style-2 wow animate__animated animate__fadeIn">
-              <h3>Popular Products</h3>
+              <h3>Best Sellers</h3>
             </div>
             <div className="tab-content" id="myTabContent">
               <div className="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
@@ -299,69 +266,71 @@ console.log(HomeCard[0]?.title);
                             item.category == "Shirts" ?
 
                               <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                                  <div className="product-img-action-wrap">
-                                    <div className="product-img product-img-zoom">
-                                      <Link to={`/${item.slug}`}>
-                                        <img className="default-img" src={image} width="100%" alt="/" />
-                                        <img className="hover-img" src={image} width="100%" alt="/" />
-                                      </Link>
-                                    </div>
-                                    <div className="product-action-1">
-                                      {
-                                        user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
-                                      }
-                                    </div>
-                                    <div className="product-badges product-badges-position product-badges-mrg flex-column">
-                                      {
-                                        item.on_sale == 0 ? null :
-                                        <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
-                                      }
-                                      {
-                                        item.best_selling == 0 ? null :
-                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
-                                      }
-                                      {
-                                        item.selling_fast == 0 ? null :
-                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
-                                      }
-                                      {
-                                        item.limited_stock == 0 ? null :
-                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
-                                      }
-                                      {
-                                        item.designer_piece == 0 ? null :
-                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
-                                      }
-                                    </div>
-                                  </div>
-                                  <div className="product-content-wrap">
-                                    <div className="product-category">
-                                      <a >{item.category}</a>
-                                    </div>
-                                    <h2><Link to={'1'}>{Name.length > 15
-                                      ? `${Name}...`
-                                      : Name}</Link></h2>
-                                    <div className="product-rate-cover">
-                                      <div className="product-rate d-inline-block">
-                                        <div className="product-rating" style={{ width: '90%' }} />
+                                <Link to={`/${item.slug}`}>
+                                  <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                    <div className="product-img-action-wrap">
+                                      <div className="product-img product-img-zoom">
+                                        <Link to={`/${item.slug}`}>
+                                          <img className="default-img" src={image} width="100%" alt="/" />
+                                          <img className="hover-img" src={image} width="100%" alt="/" />
+                                        </Link>
                                       </div>
-                                      <span className="font-small ml-5 text-muted">({item.rating})</span>
-                                    </div>
-                                    <div className="product-card-bottom">
-                                      <div className="product-price">
-                                        <span>₹{Math.round(item.base_price)}</span>
+                                      <div className="product-action-1">
                                         {
-                                          item.base_discounted_price == item.base_price ? null :                                          
-                                          <span className="old-price">₹{Math.round(item.base_discounted_price)}</span>
+                                          user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                         }
                                       </div>
-                                      <div className="add-cart">
-                                        <Link to={`/${item.slug}`} className="add">Shop Now </Link>
+                                      <div className="product-badges product-badges-position product-badges-mrg flex-column">
+                                        {
+                                          item.on_sale == 0 ? null :
+                                          <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
+                                        }
+                                        {
+                                          item.best_selling == 0 ? null :
+                                          <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
+                                        }
+                                        {
+                                          item.selling_fast == 0 ? null :
+                                          <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
+                                        }
+                                        {
+                                          item.limited_stock == 0 ? null :
+                                          <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
+                                        }
+                                        {
+                                          item.designer_piece == 0 ? null :
+                                          <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
+                                        }
+                                      </div>
+                                    </div>
+                                    <div className="product-content-wrap">
+                                      <div className="product-category">
+                                        <a >{item.category}</a>
+                                      </div>
+                                      <h2><Link to={'1'}>{Name.length > 15
+                                        ? `${Name}...`
+                                        : Name}</Link></h2>
+                                      <div className="product-rate-cover">
+                                        <div className="product-rate d-inline-block">
+                                          <div className="product-rating" style={{ width: '90%' }} />
+                                        </div>
+                                        <span className="font-small ml-5 text-muted">({item.rating})</span>
+                                      </div>
+                                      <div className="product-card-bottom">
+                                        <div className="product-price">
+                                          <span>₹{Math.round(item.base_price)}</span>
+                                          {
+                                            item.base_discounted_price == item.base_price ? null :                                          
+                                            <span className="old-price">₹{Math.round(item.base_discounted_price)}</span>
+                                          }
+                                        </div>
+                                        <div className="add-cart">
+                                          <Link to={`/${item.slug}`} className="add">Buy Now </Link>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </Link>
                               </div> : ""
                           }
                         </>
@@ -376,7 +345,41 @@ console.log(HomeCard[0]?.title);
             {/*End tab-content*/}
           </div>
         </section>
-        <BestSellers />
+        
+        <section className="popular-categories section-padding">
+          <div className="container wow animate__animated animate__fadeIn">
+            <div className="row">
+              <div className="col-md-11">
+                <div className="title">
+                  <h3>Featured Brands</h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" />
+            <div className="carausel-10-columns-cover position-relative" style={{ marginTop:"30px" }}>
+              <Slider {...settings}>
+                {
+                  BrandsList.map((item, i) => {
+                    return (
+                      <>
+                        <div className="carausel-10-columns" id="carausel-10-columns">
+                          <div className="card-2">
+                            <div className="cat-list-home">
+                              <img src={item.logo} />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })
+                }
+              </Slider>
+            </div>
+          </div>
+        </section>
+
+        {/* <BestSellers /> */}
         {/* <Footer/> */}
       </main>
     </div>
