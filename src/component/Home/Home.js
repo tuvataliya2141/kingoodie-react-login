@@ -147,7 +147,6 @@ console.log(HomeCard[0]?.title);
                     <div className="carousel-inner" >
                       {
                         BannersList.map((item, i) => {
-                          console.log(item);
                           return (
                             <>
                               <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
@@ -188,7 +187,7 @@ console.log(HomeCard[0]?.title);
             <div class="row">
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                  <img src="../assets/imgs/banner/banner-1-full.png" alt="" />
+                  <img src={HomeCard[0]?.image} alt="" />
                   <div class="banner-text">
                     <h4>
                     {HomeCard[0]?.title}
@@ -208,7 +207,7 @@ console.log(HomeCard[0]?.title);
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                  <img src="../assets/imgs/banner/banner-2 - Copy.png" alt="" />
+                  <img src={HomeCard[1]?.image} alt="" />
                   <div class="banner-text">
                     <h4>
                     {HomeCard[1]?.title}
@@ -228,7 +227,7 @@ console.log(HomeCard[0]?.title);
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                  <img src="../assets/imgs/banner/banner-3 - Copy.png" alt="" />
+                  <img src={HomeCard[2]?.image} alt="" />
                   <div class="banner-text">
                     <h4> {HomeCard[2]?.title}</h4>
                     <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
