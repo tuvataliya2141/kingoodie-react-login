@@ -46,7 +46,7 @@ function Contact() {
         <div>
             {isLoading ? <Loding /> : Contact}
             <ToastContainer />
-            <Header />
+            {/* <Header /> */}
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -126,7 +126,7 @@ function Contact() {
                 </div>
             </main>
 
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

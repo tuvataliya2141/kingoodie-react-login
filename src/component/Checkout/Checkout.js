@@ -505,7 +505,7 @@ function Checkout() {
     return (
         <div>
             {isLoading ? <Loding /> : Checkout}
-            <Header />
+            {/* <Header /> */}
             <ToastContainer />
             {/* <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css"></link> */}
             <main className="main">
@@ -893,7 +893,7 @@ function Checkout() {
                     </div>
                 </div>
             </main>
-            <Footer />
+            {/* <Footer/> */}
 
         </div>
 

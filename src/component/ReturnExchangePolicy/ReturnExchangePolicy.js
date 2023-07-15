@@ -5,7 +5,7 @@ import Header from '../Header'
 function ReturnExchangePolicy() {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         <main className="main pages">
         <div className="page-header breadcrumb-wrap">
             <div className="container">
@@ -58,7 +58,7 @@ function ReturnExchangePolicy() {
             </div>
         </div>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }

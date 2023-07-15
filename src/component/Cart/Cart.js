@@ -126,9 +126,9 @@ function Cart() {
     }, []);
 
     return (
-        <div>
+        <div Crat={List.length}>
             <ToastContainer />
-            <Header Crat={List.length} />
+            {/* <Header Crat={List.length} /> */}
             {isLoading ? <Loding /> : Cart}
             <main className="main">
                 <div className="page-header breadcrumb-wrap">
@@ -370,7 +370,7 @@ function Cart() {
                 </div>
             </main>
 
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

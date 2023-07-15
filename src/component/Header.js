@@ -1,16 +1,45 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppContext } from '../context/index'
-import axios from 'axios';
 import Headphone from '../assets/imgs/theme/icons/icon-headphone.svg';
+import CommonService from '../services/commonService';
+import urlConstant from "../constants/urlConstant";
+import { useAppContext } from '../context/index';
 
 function Header({ Crat }) {
   const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id } = useAppContext();
 
+  let common = new CommonService();
   const [hide, sethide] = useState('');
   const [toggle, settoggle] = useState("");
   const [toggleCategor, settoggleCategor] = useState(false)
   const data = toggleCategor == true ? "open" : "";
+  const [List, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  let totalQuantity = 0;
+  List.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+    
+  function GetAllCart() {
+      setIsLoading(true)
+      const tempid = localStorage.getItem('tempid');
+      const cartid = user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
+
+      const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
+      common.httpGet(GetAllCart).then(function (res) {
+          setList(res.data.data[0].cart_items);
+          setIsLoading(false)
+      })
+          .catch(function (error) {
+              // ToasterError("Error");
+              setIsLoading(false)
+          });
+  }
+
+  useEffect(() => {
+      GetAllCart();
+  }, []);
   const SignOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
@@ -21,7 +50,6 @@ function Header({ Crat }) {
     localStorage.removeItem("brand");
   }
   const productsData = searchData.products;
-  const categoriesData = searchData.categories;
 
   const close = (key) => {
     sethide(key)
@@ -36,7 +64,7 @@ function Header({ Crat }) {
             <div className="header-wrap">
               <div className="logo logo-width-1">
                 {/* <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link> */}
-                <Link to="/"><img src={Logo} alt="logo" /></Link>
+                <Link to="/"><img src={Logo} alt="logo" /></Link> 
               </div>
               <div className="header-right">
                 <div className="search-style-2">
@@ -110,7 +138,7 @@ function Header({ Crat }) {
                             </clipPath>
                           </defs>
                         </svg>
-
+                        {totalQuantity > 0 && <span className="pro-count blue">{totalQuantity}</span>}
 
                         {/* {
                          // Crat == null ? <span className="pro-count blue">{GetCart.length}</span> : <span className="pro-count blue">{Crat}</span>

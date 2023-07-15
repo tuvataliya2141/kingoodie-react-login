@@ -130,7 +130,7 @@ console.log(HomeCard[0]?.title);
   return (
     <div>
       <ToastContainer />
-      <Header />
+      {/* <Header /> */}
       {isLoading ? <Loding /> : Home}
       <main className="main">
         <section className="home-slider position-relative mb-30">
@@ -377,7 +377,7 @@ console.log(HomeCard[0]?.title);
           </div>
         </section>
         <BestSellers />
-        <Footer />
+        {/* <Footer/> */}
       </main>
     </div>
   )

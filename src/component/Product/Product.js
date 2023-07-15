@@ -218,7 +218,7 @@ function Product(props) {
       behavior: "smooth",
     });
     GetSingelProducts();
-  }, []);
+  }, [id]);
   useEffect(() => {
     let lightbox = new PhotoSwipeLightbox({
       gallery: '#Gallary',
@@ -233,14 +233,11 @@ function Product(props) {
     };
   }, []);
 
- 
-console.log('meta', window.location.href);
-
   return (
     <div>
       {isLoading ? <Loding /> : Product}
       <ToastContainer />
-      <Header />
+      {/* <Header /> */}
       { List.name ? 
         <Helmet>
           <title> {List.name}| kingoodie</title>
@@ -852,7 +849,7 @@ console.log('meta', window.location.href);
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer/> */}
     </div>
   )
 }

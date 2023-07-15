@@ -78,7 +78,7 @@ function TicketsDetail() {
     return (
         <div>
             <ToastContainer />
-            <Header />
+            {/* <Header /> */}
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -162,7 +162,7 @@ function TicketsDetail() {
                 </div>
             </main>
 
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

@@ -120,7 +120,7 @@ function Login() {
     return (
         <div>
             <ToastContainer />
-            <Header />
+            {/* <Header /> */}
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -181,7 +181,7 @@ function Login() {
             </main>
             `<script src="https://apis.google.com/js/platform.js" async defer></script>`
             `<script src="https://connect.facebook.net/en_US/sdk.js"></script>`
-            <Footer />
+            {/* <Footer/> */}
         </div>
     )
 }

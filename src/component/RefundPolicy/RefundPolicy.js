@@ -5,7 +5,7 @@ import Header from '../Header'
 function RefundPolicy() {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         <main className="main pages">
         <div className="page-header breadcrumb-wrap">
             <div className="container">
@@ -45,7 +45,7 @@ function RefundPolicy() {
             </div>
         </div>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }

@@ -6,7 +6,7 @@ import Header from './Header';
 function Error() {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
 
       <main className="main page-404">
         <div className="page-content pt-150 pb-150">
@@ -35,7 +35,7 @@ function Error() {
 
 
 
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }
