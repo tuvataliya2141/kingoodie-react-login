@@ -13916,3 +13916,28 @@ footer .hotline img {
 .sleeve-options .select2-container--default .select2-selection--single .select2-selection__arrow b {
   top: 0 !important;
 }
+.bwp-header-campar{
+  background:#283354;
+  display: flex;
+}.bwp-header-campar a{
+  color: #ffffff;
+}.bwp-header-campar a span{
+  color: #fffb00;
+  font-weight: 700;
+}@media (max-width:1200px){}
+@media (max-width:991px){}
+@media (max-width:767px){}
+
+.bwp-header-campar marquee ul {
+  padding: 5px 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.bwp-header-campar marquee ul li a {
+  padding: 0 20px;
+}

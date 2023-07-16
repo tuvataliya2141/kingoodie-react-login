@@ -6,21 +6,15 @@ import urlConstant from "../constants/urlConstant";
 import { useAppContext } from '../context/index';
 
 function Header({ Crat }) {
-  const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id } = useAppContext();
+  const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id , totalCount ,setTotalCount} = useAppContext();
 
   let common = new CommonService();
   const [hide, sethide] = useState('');
   const [toggle, settoggle] = useState("");
   const [toggleCategor, settoggleCategor] = useState(false)
   const data = toggleCategor == true ? "open" : "";
-  const [List, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  let totalQuantity = 0;
-  List.forEach((item) => {
-      totalQuantity += item.quantity;
-    });
-    
   function GetAllCart() {
       setIsLoading(true)
       const tempid = localStorage.getItem('tempid');
@@ -28,8 +22,8 @@ function Header({ Crat }) {
 
       const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
       common.httpGet(GetAllCart).then(function (res) {
-          setList(res.data.data[0].cart_items);
           setIsLoading(false)
+          setTotalCount(res.data.data[0].cart_items)
       })
           .catch(function (error) {
               // ToasterError("Error");
@@ -55,10 +49,71 @@ function Header({ Crat }) {
     sethide(key)
   }
 
-
+const discountData=[{
+  id:1,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},{
+  id:2,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},{
+  id:3,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},{
+  id:4,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},{
+  id:5,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},{
+  id:6,
+  name:'Flat',
+  amount:'10%',
+  type:'OFF on Prepaid Orders'
+},  {
+  id: 7,
+  name: "Flat",
+  amount: "10%",
+  type: "OFF on Prepaid Orders",
+},
+{
+  id: 8,
+  name: "Flat",
+  amount: "10%",
+  type: "OFF on Prepaid Orders",
+},
+{
+  id: 9,
+  name: "Flat",
+  amount: "10%",
+  type: "OFF on Prepaid Orders",
+},]
   return (
     <div>
       <header className="header-area header-style-1 header-height-2 ">
+        <div data-section-id="header-campar" data-section-type="header-campar-section" class="bwp-header-campar " >
+          <marquee>
+            <ul>
+              {discountData.map((data)=>{
+                return(
+                <li key={data.id}>
+                    <a href="">
+                      {data.name} <b><span>{data.amount}</span></b> {data.type}
+                    </a>
+                  </li>)
+              })}
+                </ul>
+          </marquee>
+	      </div>
         <div className="header-middle header-middle-ptb-1 d-none d-lg-block">
           <div className="container">
             <div className="header-wrap">
@@ -138,7 +193,7 @@ function Header({ Crat }) {
                             </clipPath>
                           </defs>
                         </svg>
-                        {totalQuantity > 0 && <span className="pro-count blue">{totalQuantity}</span>}
+                        <span className="pro-count blue">{totalCount.length}</span>
 
                         {/* {
                          // Crat == null ? <span className="pro-count blue">{GetCart.length}</span> : <span className="pro-count blue">{Crat}</span>
