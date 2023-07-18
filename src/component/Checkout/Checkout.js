@@ -16,7 +16,7 @@ import Select2 from "react-select2-wrapper";
 
 function Checkout() {
     let common = new CommonService();
-    const { Loding, user_id, Logo, UserEmail } = useAppContext();
+    const { Loding, user_id, Logo, UserEmail ,setTotalCount} = useAppContext();
     const { CreateOrder } = useShippingContext();
 
     const [CouponCode, SetCouponCode] = useState('');
@@ -146,7 +146,13 @@ function Checkout() {
         const cartid = user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
         const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
         common.httpGet(GetAllCart).then(function (res) {
-            SetGetCart(res.data.data[0].cart_items);
+            if(res?.data?.data[0]?.cart_items){
+                SetGetCart(res.data.data[0].cart_items);
+                setTotalCount(res?.data?.data[0]?.cart_items)
+            }else{
+                setTotalCount([])
+                SetGetCart([])
+            }
         }).catch(function (error) {
             // ToasterError("Error");
         });
@@ -523,7 +529,7 @@ function Checkout() {
                         <div className="col-lg-10 mb-40">
                             <h1 className="heading-2 mb-10">Checkout</h1>
                             <div className="d-flex justify-content-between">
-                                <h6 className="text-body">There are <span className="text-brand">3</span> products in your cart</h6>
+                                <h6 className="text-body">There are <span className="text-brand">{GetCart.length}</span> products in your cart</h6>
                             </div>
                         </div>
                         <div className="col-lg-2 mb-40" style={{ textAlign: "end" }}>

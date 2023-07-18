@@ -14,12 +14,11 @@ import { useNavigate, Link } from 'react-router-dom'; import axios from "axios";
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding, ApplyCoupon } = useAppContext();
+    const { user_id, Loding, ApplyCoupon ,setTotalCount} = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [CouponCode, SetCouponCode] = useState('');
-
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(5);
@@ -37,7 +36,13 @@ function Cart() {
 
         const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
         common.httpGet(GetAllCart).then(function (res) {
-            setList(res.data.data[0].cart_items);
+            if(res?.data?.data[0]?.cart_items){
+                setList(res.data.data[0].cart_items);
+                setTotalCount(res?.data?.data[0]?.cart_items)
+            }else{
+                setTotalCount([])
+                setList([])
+            }
             setIsLoading(false)
         })
             .catch(function (error) {
@@ -233,7 +238,7 @@ function Cart() {
                                 </table>
                             </div>
                             <div className="divider-2 mb-30" />
-                            <div className="cart-action d-flex justify-content-between">
+                           {List.length > 0 && <div className="cart-action d-flex justify-content-between">
                                 <Pagination
                                     totalPosts={List?.length}
                                     postsPerPage={postsPerPage}
@@ -243,7 +248,7 @@ function Cart() {
                                 {/* <a className="btn  mr-10 mb-sm-15" ><i className="fi-rs-trash mr-5" />Clear Cart</a> */}
                                 <h6 className="text-body" onClick={() => AllCartdelete()}><a className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
 
-                            </div>
+                            </div>}
                         </div>
                         <div className="col-lg-4 cart-subtotal-box">
                             <div className="border p-md-4 cart-totals ml-30">

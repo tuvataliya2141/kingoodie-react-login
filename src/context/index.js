@@ -34,6 +34,7 @@ const AppProvider = ({ children }) => {
   const [FooterDesc, SetFooterDesc] = useState([]);
   const [HomeCard, SetHomeCard] = useState([]);
   const [searchData, setSearchData] = useState([]);
+  const [totalCount, setTotalCount] = useState([]);
 
   function wishlistPost(P_Id) {
     try {
@@ -77,6 +78,7 @@ const AppProvider = ({ children }) => {
       axios.post(CartData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
       }).then(() => {
+        setTotalCount([...totalCount,Data])
         ToasterSuccess("Success...!!");
         setIsLoading(false)
       })
@@ -149,7 +151,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserEmail, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo, FooterAddress, FooterPhone, FooterEmail, FooterDesc}}>
+    <AppContext.Provider value={{totalCount,setTotalCount, user_id, UserEmail, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo, FooterAddress, FooterPhone, FooterEmail, FooterDesc}}>
       {children}
     </AppContext.Provider>
   );

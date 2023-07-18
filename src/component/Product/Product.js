@@ -83,7 +83,7 @@ function Product(props) {
   const [rating, setRating] = useState(0)
 
   // Catch Rating value
-  const handleRating = (rate: number) => {
+  const handleRating = (rate) => {
     setRating(rate)
   }
 
@@ -140,44 +140,24 @@ function Product(props) {
     setcolors(e.target.value);
   } 
   
-  
-
-  // const settings = {
-  //   className: "center",
-  //   centerMode: true,
-  //   infinite: true,
-  //   centerPadding: "60px",
-  //   slidesToShow: 3,
-  //   speed: 500
-  // };
-
   const settings = {
-  //   // dots: true,
-  //   mobileFirst: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   loop: true,
-  //   arrows: false,
-  //   responsive: [
-    //     {
-      //         breakpoint: 769,
-      //         settings: 'unslick'
-      //     }
-      // ]
   infinite: false,
+  arrows: false,
   slidesToShow: 1,
-		slidesToScroll: 1,
-        mobileFirst: true,
-        arrows: false,
-        dots: false,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                  dots: true,
-                }
-            }
-        ]
+  slidesToScroll: 1,
+  initialSlide: 1,
+  autoplay : true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow:1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        swipeToSlide: true,
+      }
+    },]
   };
 
   function GetPinCode(PinCode) {

@@ -133,7 +133,7 @@ function BestSellers() {
                               <div className="product-card-bottom">
 
 
-                                <Link to={`/${item.slug}`} style={{ width: "100%" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
+                                <Link to={`/${item.slug}`} style={{ width: "100%" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Shop Now</a></Link>
 
                               </div>
                             </div>
