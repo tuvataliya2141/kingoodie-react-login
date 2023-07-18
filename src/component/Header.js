@@ -267,7 +267,7 @@ const discountData=[{
                             return (
                               <>
                                 <li>
-                                  <Link to="/ShopProduct">{item.name}</Link>
+                                <Link to={"/ShopProduct/"+item.slug}>{item.name}</Link>
                                 </li>
                               </>
                             )
