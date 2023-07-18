@@ -14,6 +14,7 @@ function Header({ Crat }) {
   const [toggleCategor, settoggleCategor] = useState(false)
   const data = toggleCategor == true ? "open" : "";
   const [isLoading, setIsLoading] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   function GetAllCart() {
       setIsLoading(true)
@@ -48,6 +49,28 @@ function Header({ Crat }) {
   const close = (key) => {
     sethide(key)
   }
+
+  const handleCategoryHover = (categoryId) => {
+    setHoveredCategory(categoryId);
+  };
+
+  const renderSubCategories = (category) => {
+    if (category.children && category.children.length > 0) {
+      return (
+        <ul>
+          {category.children.map((childCategory) => (
+            <li key={childCategory.id}>
+              <Link to={"/ShopProduct/" + childCategory.slug}>
+                {childCategory.name}
+              </Link>
+              {renderSubCategories(childCategory)}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  };
 
 const discountData=[{
   id:1,
@@ -263,11 +286,16 @@ const discountData=[{
                     <div className="d-flex categori-dropdown-inner">
                       <ul>
                         {
-                          AllCategory.map((item, i) => {
+                          AllCategory.map((category, index) => {
                             return (
                               <>
-                                <li>
-                                <Link to={"/ShopProduct/"+item.slug}>{item.name}</Link>
+                                <li
+                                  key={category.id}
+                                  onMouseEnter={() => handleCategoryHover(category.id)}
+                                  onMouseLeave={() => handleCategoryHover(null)}
+                                >
+                                  <Link to={"/ShopProduct/" + category.slug}>{category.name}</Link>
+                                  {hoveredCategory === category.id && renderSubCategories(category)}
                                 </li>
                               </>
                             )
