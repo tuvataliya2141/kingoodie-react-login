@@ -12,7 +12,7 @@ const StickyCart = () => {
           <button className="btn btn-sm">CheckOut</button>
         </Link>
         <Link to={"/Cart"}>
-          <button className="btn btn-sm">Add to cart</button>
+          <button className="btn btn-sm">Go to cart</button>
         </Link>
       </div>
     </div>
