@@ -55,10 +55,10 @@ function Header({ Crat }) {
   };
 
   const renderSubCategories = (category) => {
-    if (category.children && category.children.length > 0) {
+    if (hoveredCategory === category.id) {
       return (
         <ul>
-          {category.children.map((childCategory) => (
+          {category.children && category.children.map((childCategory) => (
             <li key={childCategory.id}>
               <Link to={"/ShopProduct/" + childCategory.slug}>
                 {childCategory.name}
@@ -71,6 +71,24 @@ function Header({ Crat }) {
     }
     return null;
   };
+
+  // const renderSubCategories = (category) => {
+  //   if (category.children && category.children.length > 0) {
+  //     return (
+  //       <ul>
+  //         {category.children.map((childCategory) => (
+  //           <li key={childCategory.id}>
+  //             <Link to={"/ShopProduct/" + childCategory.slug}>
+  //               {childCategory.name}
+  //             </Link>
+  //             {renderSubCategories(childCategory)}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     );
+  //   }
+  //   return null;
+  // };
 
 const discountData=[{
   id:1,
