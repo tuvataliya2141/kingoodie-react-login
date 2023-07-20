@@ -139,27 +139,26 @@ function Product(props) {
   const colorFun = (e) => {
     setcolors(e.target.value);
   } 
-  
-  const settings = {
-  infinite: false,
-  arrows: false,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  initialSlide: 1,
-  autoplay : true,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow:1,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: true,
-        swipeToSlide: true,
-      }
-    },]
-  };
 
+  var settings = {
+    dots: true,
+    arrows: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+
+        }
+      }
+    ]
+  };
   function GetPinCode(PinCode) {
     const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
     const Data = {

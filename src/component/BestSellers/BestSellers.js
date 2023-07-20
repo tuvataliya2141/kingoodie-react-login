@@ -23,7 +23,7 @@ function BestSellers() {
     speed: 500
   };
 
-  function BestSeller() {
+  function BestSellerData() {
     setIsLoading(true)
     const BestSellers1 = `${urlConstant.BestSellers.BestSellersData}`;
     common.httpGet(BestSellers1).then(function (res) {
@@ -37,7 +37,7 @@ function BestSellers() {
 
 
   useEffect(() => {
-    BestSeller();
+    BestSellerData();
   }, [])
 
   return (
