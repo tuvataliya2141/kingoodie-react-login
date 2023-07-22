@@ -8970,7 +8970,7 @@ span.fi-rs-apps {
     padding: 20px;
     width: 250px;
     min-width: 250px;
-    height: 400px;
+    height: fit-content;
     overflow-x: hidden;
 }
 
