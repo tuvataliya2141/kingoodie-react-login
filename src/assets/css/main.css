@@ -8989,26 +8989,24 @@ span.fi-rs-apps {
 }
 
 .categories-dropdown-wrap ul li {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   line-height: 48px;
   border-radius: 5px;
-  /* border: 1px solid #F2F3F4; */
   padding: 9px 18px;
-  /* margin: 0 15px 15px 0; */
   height: 50px;
   transition: .3s;
   -moz-transition: .3s;
   -webkit-transition: .3s;
   -o-transition: .3s;
 }
+ .child ul{
+  margin-left: 15px;
+}
 
 .categories-dropdown-wrap ul li:hover {
-  /* border: 1px solid #ececec; */
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   transition: .3s;
@@ -9056,14 +9054,6 @@ span.fi-rs-apps {
   position: relative;
 }
 
-.categories-dropdown-wrap ul li.has-children>a::after {
-  content: "\f111";
-  font-family: 'uicons-regular-straight' !important;
-  position: absolute;
-  right: 30px;
-  top: 50%;
-  margin-top: -10px;
-}
 
 .categories-dropdown-wrap ul li.has-children .dropdown-menu {
   left: 100%;

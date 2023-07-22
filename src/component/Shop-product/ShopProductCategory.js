@@ -75,7 +75,7 @@ function ShopProductCategory() {
     return currentDimenstion;
   }
 
-  const {  width } = useDimensionHook();
+  const { width } = useDimensionHook();
 
   const isMobile = width >= 992;
 
@@ -153,7 +153,7 @@ function ShopProductCategory() {
       top: 0,
       behavior: "smooth",
     });
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     localStorage.setItem("category", filterData.categoryData.toString());
