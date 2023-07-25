@@ -10,7 +10,6 @@ function Header({ Crat }) {
     UserName,
     AllCategory,
     Logo,
-    GetCart,
     GetAllSearch,
     searchData,
     user_id,
@@ -24,7 +23,6 @@ function Header({ Crat }) {
   const [toggleCategor, settoggleCategor] = useState(false);
   const data = toggleCategor == true ? "open" : "";
   const [isLoading, setIsLoading] = useState(false);
-  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   function GetAllCart() {
     setIsLoading(true);
@@ -37,6 +35,7 @@ function Header({ Crat }) {
       .then(function (res) {
         setIsLoading(false);
         setTotalCount(res.data.data[0].cart_items);
+        settoggleCategor(false);
       })
       .catch(function (error) {
         // ToasterError("Error");
@@ -62,46 +61,29 @@ function Header({ Crat }) {
     sethide(key);
   };
 
-  const handleCategoryHover = (categoryId) => {
-    setHoveredCategory(categoryId);
-  };
-
   const renderSubCategories = (category) => {
-    if (hoveredCategory === category.id) {
-      return (
+    return (
+      <div className="child">
         <ul>
           {category.children &&
             category.children.map((childCategory) => (
-              <li key={childCategory.id}>
-                <Link to={"/ShopProduct/" + childCategory.slug}>
-                  {childCategory.name}
-                </Link>
-                {renderSubCategories(childCategory)}
-              </li>
+              <>
+                <li
+                  key={childCategory.id}
+                  onClick={() => settoggleCategor(false)}
+                >
+                  <Link to={"/ShopProduct/" + childCategory.slug}>
+                    &#x2022; {childCategory.name}
+                  </Link>
+                </li>
+                {childCategory?.children?.length > 0 &&
+                  renderSubCategories(childCategory)}
+              </>
             ))}
         </ul>
-      );
-    }
-    return null;
+      </div>
+    );
   };
-
-  // const renderSubCategories = (category) => {
-  //   if (category.children && category.children.length > 0) {
-  //     return (
-  //       <ul>
-  //         {category.children.map((childCategory) => (
-  //           <li key={childCategory.id}>
-  //             <Link to={"/ShopProduct/" + childCategory.slug}>
-  //               {childCategory.name}
-  //             </Link>
-  //             {renderSubCategories(childCategory)}
-  //           </li>
-  //         ))}
-  //       </ul>
-  //     );
-  //   }
-  //   return null;
-  // };
 
   const discountData = [
     {
@@ -167,7 +149,11 @@ function Header({ Crat }) {
             {discountData.map((data) => {
               return (
                 <div className="offersData" key={data.id}>
-                    {data.name} <b> <span>{data.amount}</span> </b> {data.type}
+                  {data.name}
+                  <b>
+                    <span>{data.amount}</span>
+                  </b>
+                  {data.type}
                 </div>
               );
             })}
@@ -413,22 +399,19 @@ function Header({ Crat }) {
                   >
                     <div className="d-flex categori-dropdown-inner">
                       <ul>
-                        {AllCategory.map((category, index) => {
+                        {AllCategory.map((category) => {
                           return (
                             <>
                               <li
                                 key={category.id}
-                                onMouseEnter={() =>
-                                  handleCategoryHover(category.id)
-                                }
-                                onMouseLeave={() => handleCategoryHover(null)}
+                                onClick={() => settoggleCategor(false)}
                               >
                                 <Link to={"/ShopProduct/" + category.slug}>
                                   {category.name}
                                 </Link>
-                                {hoveredCategory === category.id &&
-                                  renderSubCategories(category)}
                               </li>
+                              {category?.children?.length > 0 &&
+                                renderSubCategories(category)}
                             </>
                           );
                         })}

@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useParams } from "react-router-dom";
-import Footer from "../Footer";
-import Header from "../Header";
-import CommonService from "../../services/commonService";
+import { Link } from "react-router-dom";
 import urlConstant from "../../constants/urlConstant";
 import { ToastContainer } from "react-toastify";
-import { ToasterWarning, ToasterError } from "../../common/toaster";
+import { ToasterWarning,  } from "../../common/toaster";
 import Pagination from "../Pagination";
 import axios from "axios";
 import { useAppContext } from "../../context/index";
 import RangeSlider from "./RangeSlider";
 
 function ShopProduct() {
-  const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
-  let common = new CommonService();
-
+  const { user_id, wishlistPost, Loding,  } = useAppContext();
   const [List, setList] = useState([]);
   const [toggleMobile, settoggleMobile] = useState(false);
   const [filterData, setFilterData] = useState({
@@ -78,11 +73,9 @@ function ShopProduct() {
     return currentDimenstion;
   }
 
-  const { height, width } = useDimensionHook();
+  const {  width } = useDimensionHook();
 
   const isMobile = width >= 992;
-
-  //mobile view our
 
   function GetProducts() {
     setIsLoading(true);
@@ -100,9 +93,11 @@ function ShopProduct() {
         const sizeData = getUniqueData(data, "multipleSize");
 
         setProductData({
-          categoryData, colorData, brandData, sizeData
-        })
-
+          categoryData,
+          colorData,
+          brandData,
+          sizeData,
+        });
       })
       .catch(function (error) {
         setIsLoading(false);
@@ -145,12 +140,6 @@ function ShopProduct() {
       return (newVal = [...new Set(newVal)]);
     }
   };
-
-
-  const priceData = getUniqueData(List, "base_discounted_price");
-  const MaxPrice = Math.max(...priceData);
-  const MinPrice = Math.min(...priceData);
-
 
   useEffect(() => {
     GetProducts();
@@ -247,7 +236,6 @@ function ShopProduct() {
                     <div className="list-group-item mb-10 mt-10">
                       <label className="fw-900">Category</label>
                       <div className="custome-checkbox">
-                        {productData.categoryData[0]}
                         {productData.categoryData.map((item, i) => {
                           return (
                             <>
@@ -338,32 +326,36 @@ function ShopProduct() {
                       </div>
                       <div></div>
                       {/* <span style={{width:"100%"}}></span> */}
-                      <label className="fw-900" style={{ width: "110%" }}>
-                        Colour
-                      </label>
-                      <div className="custome-checkbox">
-                        {productData.colorData.map((item, i) => {
-                          return (
-                            <>
-                              <input
-                                id={item}
-                                key={i}
-                                className="check-size-input"
-                                type="checkbox"
-                                name="colorData"
-                                value={`${item}`}
-                                onClick={handleInput}
-                                defaultValue
-                              />
-                              <label
-                                className="color-check-size-label"
-                                style={{ backgroundColor: `${item}` }}
-                                for={item}
-                              ></label>
-                            </>
-                          );
-                        })}
-                      </div>
+                      {productData?.colorData.length > 0 && (
+                        <>
+                          <label className="fw-900" style={{ width: "110%" }}>
+                            Color
+                          </label>
+                          <div className="custome-checkbox">
+                            {productData.colorData.map((item, i) => {
+                              return (
+                                <>
+                                  <input
+                                    id={item}
+                                    key={i}
+                                    className="check-size-input"
+                                    type="checkbox"
+                                    name="colorData"
+                                    value={`${item}`}
+                                    onClick={handleInput}
+                                    defaultValue
+                                  />
+                                  <label
+                                    className="color-check-size-label"
+                                    style={{ backgroundColor: `${item}` }}
+                                    for={item}
+                                  ></label>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -491,34 +483,36 @@ function ShopProduct() {
                       </div>
                       <div></div>
                       {/* <span style={{width:"100%"}}></span> */}
-                      {productData?.colorData.length > 0 && <><label className="fw-900" style={{ width: "110%" }}>
-                        Colour
-                      </label>
-                        <div className="custome-checkbox">
-                          {productData?.colorData.map((item, i) => {
-                            return (
-                              <>
-                                <input
-                                  id={item}
-                                  key={i}
-                                  className="check-size-input"
-                                  type="checkbox"
-                                  name="colorData"
-                                  value={`${item}`}
-                                  onClick={handleInput}
-                                  defaultValue
-                                />
-                                <label
-                                  className="color-check-size-label"
-                                  style={{ backgroundColor: `${item}` }}
-                                  for={item}
-                                ></label>
-                              </>
-                            );
-                          })}
-                        </div>
-                      </>
-                      }
+                      {productData?.colorData.length > 0 && (
+                        <>
+                          <label className="fw-900" style={{ width: "110%" }}>
+                            Color
+                          </label>
+                          <div className="custome-checkbox">
+                            {productData?.colorData.map((item, i) => {
+                              return (
+                                <>
+                                  <input
+                                    id={item}
+                                    key={i}
+                                    className="check-size-input"
+                                    type="checkbox"
+                                    name="colorData"
+                                    value={`${item}`}
+                                    onClick={handleInput}
+                                    defaultValue
+                                  />
+                                  <label
+                                    className="color-check-size-label"
+                                    style={{ backgroundColor: `${item}` }}
+                                    for={item}
+                                  ></label>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -539,8 +533,8 @@ function ShopProduct() {
                       return (
                         (value.max
                           ? Data.base_discounted_price >
-                          parseInt(value.min, 10) &&
-                          Data.base_discounted_price < parseInt(value.max, 10)
+                              parseInt(value.min, 10) &&
+                            Data.base_discounted_price < parseInt(value.max, 10)
                           : false) ||
                         filterData.brandData.includes(Data.brand) ||
                         filterData.categoryData.includes(Data.category) ||
@@ -705,7 +699,7 @@ function ShopProduct() {
                                   ₹{Math.round(item.base_discounted_price)}
                                 </span>
                                 {item.base_discounted_price ==
-                                  item.base_price ? null : (
+                                item.base_price ? null : (
                                   <span className="old-price">
                                     ₹{Math.round(item.base_price)}
                                   </span>
@@ -725,13 +719,19 @@ function ShopProduct() {
                     );
                   })}
               </div>
-
-              <Pagination
-                totalPosts={List?.length}
-                postsPerPage={postsPerPage}
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-              />
+              {!currentPosts.length && (
+                <div>
+                  <h4>No items available.</h4>
+                </div>
+              )}
+              {currentPosts.length > 0 && (
+                <Pagination
+                  totalPosts={List?.length}
+                  postsPerPage={postsPerPage}
+                  setCurrentPage={setCurrentPage}
+                  currentPage={currentPage}
+                />
+              )}
               {/* <div className="row">
                                 <div className="col-lg-12 mb-40" style={{textAlign: "center"}}>
                                     <a href="#" className="btn btn-fill-out btn-block mt-30">View More Products</a>
