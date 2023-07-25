@@ -13584,7 +13584,7 @@ footer .hotline img {
   z-index: 100;
   border: 1px solid gray;
   background-color: #fff;
-  padding: 10px;
+  padding: 20px;
   font-size: 17px;
   font-weight: 700;
   display: flex;
@@ -13595,6 +13595,10 @@ footer .hotline img {
 }
 .productList h4{
   color: gray;
+  max-width: 50%;
+}
+.productList .footer-button{
+  max-width: 50%;
 }
 .productList span{
   color: black;

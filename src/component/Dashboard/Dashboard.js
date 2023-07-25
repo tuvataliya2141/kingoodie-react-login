@@ -197,6 +197,7 @@ function Dashboard() {
         const GetsupportTickets = `${urlConstant.User.GetTickets}/${user_id}`;
         common.httpGet(GetsupportTickets).then(function (res) {
             if (res.data.status != false) {
+                console.log("SUPPORT-Ticket:- ", res.data.data);
                 setSupportTicketsList(res.data.data);
             }
         }).catch(function (error) {
