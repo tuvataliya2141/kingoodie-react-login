@@ -12,12 +12,12 @@ export const config = {
    PayPal_client_Id: 'AQ--tCY2U0vaYX5l4J5ugzv-bH1COHRa7t6ajPd9YCkyQE0wpbnBGeB9IrjFQd0oZ2kPdUkLCEin0ly_',
 
    //RazorPay key
-   RazorPayKey: 'rzp_test_c1DB2lrwC60uZq',
+   RazorPayKey: 'rzp_test_99FPRNS7pzdNVM',
 
    //Stripe key
    StripeKey: 'pk_test_51McFL8SCjJTE2JxUqfahfv5phYnyHAgscvNwftrvzjNZ90OcPDeWgoZPfUpUxe0i2iMfKx2jy14I7jDAUrqUuSNW00FckS1oP6',
    StripeSecret: 'sk_test_51McFL8SCjJTE2JxU3N2qmwxOBGLbBtuCOlSYHILZCA5YouEj9qygekCe6Hx2bmtku3xbdeo1mkCDzm6zXA1liL4F000fbnl0W7',
 
    // live google login
-   clientId: "69098547658-rh80vkf9mr56bgvhv21bpou1h4r7ritj.apps.googleusercontent.com"
+   clientId: "247491786250-1b5ir565ngoevjuesutoe42hpio9doil.apps.googleusercontent.com"
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
@@ -9,11 +9,30 @@ import { ToastContainer } from "react-toastify";
 import ReactGoogleLogin from "react-google-login";
 import FacebookLogin from 'react-facebook-login';
 import { config } from '../constants/config';
+import { gapi } from 'gapi-script';
 
 
 
 function Register() {
     let common = new CommonService();
+
+    // const clientId = '505048236034-csm6okkntdi62hikvnk6q93sg4o0cm1j.apps.googleusercontent.com';
+    const clientId = '247491786250-1b5ir565ngoevjuesutoe42hpio9doil.apps.googleusercontent.com';
+
+    const userId = localStorage.getItem('user');
+    useEffect(() => {
+        if (userId) {
+            navigate('/')
+        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+
+        gapi.load("client:auth2", ()=>{
+            gapi.auth2.init({clientId:clientId})
+        })
+    }, [])
 
     const [name, SetName] = useState("");
     const [email_or_phone, SetEmail_or_phone] = useState("");
@@ -58,14 +77,35 @@ function Register() {
             });
     }
 
-    const onResponse = (resp) => {
-        console.log(resp);
+    
+    const handleGoogleLogin = () => {
+        window.gapi.load('auth2', async () => {
+            const auth2 = await window.gapi.auth2.init({
+                client_id: clientId,
+            });
+            auth2.signIn().then((response) => {
+                const id_token = response.getAuthResponse().id_token;
+                const GoogleLoginData = `${urlConstant.User.GoogleLogin}?access_token=${id_token}`;
+                common.httpGet(GoogleLoginData).then((res) => {
+                    console.log(res.data);
+                if (res.data.user.name) {
+                    ToasterSuccess('Login Successfully');
+                    localStorage.setItem('access_token', res.data.access_token);
+                    localStorage.setItem('user', res.data.user.name);
+                    localStorage.setItem('userEmail', res.data.user.email)
+                    localStorage.setItem('type', res.data.user.type);
+                    localStorage.setItem('user_id', res.data.user.id);
+                    window.location.href = '/';
+                } else {
+                    ToasterError('Not Valid Details');
+                }
+                }).catch((error) => {
+                    ToasterError('Not Valid Details');
+                });
+            });
+        });
     };
 
-
-    const responseFacebook = (response) => {
-        console.log(response);
-    }
     return (
         <div>
 
@@ -132,22 +172,8 @@ function Register() {
                                     <div className="col-lg-6 col-md-8 mt-20">
                                         <div className="form-group mb-30" style={{ display: "flex", justifyContent: "space-between" }}>
                                             <div style={{ display: "flex" }}>
-                                                <a className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="../assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
-                                                <a className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="../assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
+                                            <a href='#' onClick={handleGoogleLogin} className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="../assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                             </div>
-                                            {/* <ReactGoogleLogin
-                                                clientId={config.clientId}
-                                                buttonText=""
-                                                onSuccess={onResponse}
-                                                onFailure={onResponse}
-                                            />
-
-                                            <FacebookLogin
-                                                appId="1327163221190975"
-                                                autoLoad={true}
-                                                fields="name,email,picture"
-                                                // onClick={componentClicked}
-                                                callback={responseFacebook} />, */}
                                             <div>
                                                 <button type="submit" style={{ borderRadius: "30px", float: "right" }} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Submit & Register</button>
                                             </div>

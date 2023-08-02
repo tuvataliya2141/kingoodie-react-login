@@ -12412,6 +12412,12 @@ footer .hotline img {
 }
 
 @media only screen and (max-width: 767.98px) {
+  .header-action-2 .header-action-icon-2>a span.pro-count {
+    height: 15px;
+    width: 15px;
+    font-size: 10px;
+    line-height: 15px;
+  }
   .header-wrap.header-space-between {
     padding: 10px 0;
   }

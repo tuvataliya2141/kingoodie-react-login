@@ -89,55 +89,55 @@ function Header({ Crat }) {
     {
       id: 1,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 2,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 3,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 4,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 5,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 6,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 7,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 8,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
     {
       id: 9,
       name: "Flat",
-      amount: "10%",
+      amount: " 10% ",
       type: "OFF on Prepaid Orders",
     },
   ];
@@ -294,10 +294,6 @@ function Header({ Crat }) {
                         <span className="pro-count blue">
                           {totalCount.length}
                         </span>
-
-                        {/* {
-                         // Crat == null ? <span className="pro-count blue">{GetCart.length}</span> : <span className="pro-count blue">{Crat}</span>
-                        }  */}
                       </Link>
                     </div>
                     <div className="header-action-icon-2">
@@ -443,9 +439,6 @@ function Header({ Crat }) {
                             Man’s Wear{" "}
                           </Link>
                         </li>
-                        {/* <li className="nav-item">
-                          <Link className="nav-link" to="/ShopProduct">Women's Wear </Link>
-                        </li> */}
                         <li className="nav-item">
                           <Link className="nav-link" to="/Contact">
                             Contact
@@ -456,23 +449,6 @@ function Header({ Crat }) {
                             Terms and conditions
                           </Link>
                         </li>
-                        {/* <li>
-                          <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>
-                          <ul className="sub-menu">
-                            <li><Link to="/Register">Register</Link></li>
-                            <li><Link to="/Login">Login</Link></li>
-                            <li><Link to="/ShopProduct">Shop Product</Link></li>
-                            <li><Link to="/wishlist">wishlist</Link></li>
-                            <li><Link to="/Cart">Cart</Link></li>
-                            <li><Link to="/shop/girls-tops">Product</Link></li>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/Terms-Service">Terms Service</Link></li>
-                            <li><Link to="/Checkout">Checkout</Link></li>
-                            <li><Link to="/Contact">Contact</Link></li>
-                            <li><Link to="/Privacy-Policy">Privacy Policy</Link></li>
-                            <li><Link to="/*">404 Page</Link></li>
-                          </ul>
-                        </li> */}
                       </ul>
                     </nav>
                   </div>
@@ -551,7 +527,10 @@ function Header({ Crat }) {
                               <rect width="24" height="24" fill="white" />
                             </clipPath>
                           </defs>
-                        </svg>
+                        </svg>                        
+                        <span className="pro-count blue">
+                          {totalCount.length}
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -603,7 +582,10 @@ function Header({ Crat }) {
             </div>
             <div className="mobile-menu-wrap mobile-header-border">
               <nav>
-                <ul className="mobile-menu font-heading">
+                <ul className="mobile-menu font-heading"
+                onClick={() => {
+                  settoggle("");
+                }}>
                   <li className="nav-item">
                     <Link className="nav-link" to="/">
                       Home

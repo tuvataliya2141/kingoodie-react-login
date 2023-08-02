@@ -58,11 +58,9 @@ function Checkout() {
 
     var Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
     var main_Sub_Total_price = Sub_Total_price - (Sub_Total_price * 5 / 100);
-    console.log('main sub check pay:', main_Sub_Total_price); 
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
-
         const login_type = payment_method == 'cod' ? 1 : 2;
 
         if (login_type == 2) {
@@ -75,7 +73,8 @@ function Checkout() {
         if(!city){
             ToasterWarning('Please select another address')
             return
-        }
+        }        
+
         if (!Name || !Address || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
             
             ToasterWarning('Please select or add the address')
@@ -413,6 +412,7 @@ function Checkout() {
     function placeOrder(payment_id = null) {
         setIsLoading(true)
         const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Math.round(main_Sub_Total_price), address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        console.log("CHECKOUT-DATA:- ", Data);
         const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
         axios.post(PlaceOrderUrl, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -436,7 +436,7 @@ function Checkout() {
     }
     
     const setShippingAddress = async (address_id) => {
-        setIsLoading(true)
+        setIsLoading(true);
         const GetAddress = `${urlConstant.User.UserUpdateAddresses}/`+address_id;
         await common.httpGet(GetAddress).then(function (res) {
             SetName(res.data.data.name);
@@ -444,14 +444,16 @@ function Checkout() {
             SetPhoneNumber(res.data.data.phone);
             SetAddress(res.data.data.address);
             SetPostCode(res.data.data.postal_code);
-            StatesGet(res.data.data.country_id);
-            CityGet(res.data.data.state_id);
-            setTimeout(() => {
-                SetCountry(res.data.data.country_id);
+            SetCountry(res.data.data.country_id);
+            setIsLoading(false);
+            let setCity = setInterval(function(){
                 Setstate(res.data.data.state_id);
                 Setcity(res.data.data.city_id);
-                setIsLoading(false);
-            }, 3000);
+                if(state != null && city != '') {
+                    clearInterval(setCity);
+                }
+            
+            }, 2000);
 
         }).catch(function (error) {
             // ToasterWarning(error.message)
@@ -474,7 +476,7 @@ function Checkout() {
           setPinMessage(null);
           setshowcodbtn(0);
           if (delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'Y') {
-            setPinMessage('This product is available for courier delivery at '+PinCode+' location.');
+            // setPinMessage('This product is available for courier delivery at '+PinCode+' location.');    
           } else if(delhiveryArray[0] == 'Y' && delhiveryArray[1] == 'N'){
             setshowcodbtn(1);
             setPinMessage('This product is not available for cash on drlivary.');
@@ -493,10 +495,10 @@ function Checkout() {
         CountriesGet();
         GetaddressList();
         GetAllCart();
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        // window.scrollTo({
+        //     top: 0,
+        //     behavior: "smooth",
+        // });
          // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
 
